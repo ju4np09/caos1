@@ -155,5 +155,25 @@
     });
   }
 
+  // En móvil el nav debe reflejar qué sección está realmente a la vista
+  // mientras el usuario hace scroll libremente, no solo tras un click.
+  if (isMobileLayout && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const page = entry.target === closing ? 2 : 1;
+        currentPage = page;
+        navLinks.forEach((link) => {
+          const linkPage = Number(link.dataset.page);
+          link.classList.toggle('is-active', linkPage === page);
+          link.setAttribute('aria-current', linkPage === page ? 'page' : 'false');
+        });
+      });
+    }, { threshold: 0.5 });
+
+    if (hero) sectionObserver.observe(hero);
+    if (closing) sectionObserver.observe(closing);
+  }
+
   applyPageState(1);
 })();

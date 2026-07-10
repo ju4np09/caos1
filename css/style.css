@@ -337,50 +337,6 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
-.closing__cta {
-  display: inline-block;
-  padding: 0.85em 2.5em;
-  background: rgba(201, 162, 39, 0.06);
-  border: 1px solid var(--glass-border);
-  border-radius: 2px;
-  color: var(--color-accent);
-  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  transition: background var(--duration) var(--ease-fluid),
-              border-color var(--duration) var(--ease-fluid),
-              transform var(--duration) var(--ease-fluid),
-              box-shadow var(--duration) var(--ease-fluid);
-}
-.closing__cta:hover {
-  background: rgba(201, 162, 39, 0.12);
-  border-color: rgba(201, 162, 39, 0.45);
-  opacity: 1;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-.closing__links {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
-  padding: var(--space-xs) var(--space-md);
-}
-.closing__links a {
-  font-size: clamp(0.7rem, 1.2vw, 0.8rem);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  transition: color var(--duration) var(--ease-fluid);
-}
-.closing__links a:hover {
-  color: var(--color-accent);
-  opacity: 1;
-}
-
 .site-footer {
   position: fixed;
   bottom: 0;
@@ -452,6 +408,17 @@ body.is-page-2 .site-footer {
 }
 
 @media (max-width: 768px) {
+  /* El logo grande ya está en el hero; evitamos mostrarlo también
+     en el header mientras esa sección está a la vista. */
+  .site-header:not(.is-scrolled) .site-logo {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .site-logo {
+    transition: opacity var(--duration) var(--ease-fluid),
+                transform var(--duration) var(--ease-fluid);
+  }
+
   .site-nav {
     position: fixed;
     inset: 0;
@@ -490,11 +457,6 @@ body.is-page-2 .site-footer {
   }
   .hero__logo {
     width: clamp(120px, 40vw, 180px);
-  }
-
-  .closing__links {
-    flex-direction: column;
-    gap: var(--space-sm);
   }
 
   .page-nav--next { right: var(--space-sm); }

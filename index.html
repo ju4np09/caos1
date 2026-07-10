@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Imperio Caos Malware — Presentación">
+  <title>Imperio Caos Malware</title>
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="page-bg" aria-hidden="true"></div>
+
+  <header class="site-header" id="header">
+    <a href="#seccion-1" class="site-logo">
+      <img src="assets/logo.png" alt="Imperio Caos Malware" width="44" height="44">
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="#seccion-1" data-page="1" class="is-active" aria-current="page">Inicio</a>
+      <a href="#seccion-2" data-page="2">Contacto</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="page-layers" id="page-layers">
+
+      <section class="hero" id="seccion-1" aria-hidden="false">
+        <div class="hero__overlay" aria-hidden="true"></div>
+        <div class="hero__content">
+          <div class="hero__brand" data-scroll="fade-up">
+            <img class="hero__logo" src="assets/logo.png" alt="Imperio Caos Malware" width="220" height="220">
+          </div>
+          <h1 class="hero__title">
+            <span class="hero__title-line hero__title-line--thin" data-scroll="fade-up">Imperio Caos Malware</span>
+          </h1>
+          <p class="hero__desc glass" data-scroll="fade-up">
+            aquí pones la presentación xd
+          </p>
+        </div>
+      </section>
+
+      <section class="closing" id="seccion-2" aria-hidden="true">
+        <div class="closing__overlay" aria-hidden="true"></div>
+        <div class="closing__content">
+          <img class="closing__logo" src="assets/logo.png" alt="Imperio Caos Malware" width="160" height="160" data-scroll="fade-up">
+          <p class="closing__text glass" data-scroll="fade-up">
+            Los invitamos a pasar a las redes sociales de Imperio Caos Malware para que sean parte de nuestra comunidad.
+          </p>
+          <a href="#" class="closing__cta" data-scroll="fade-up">Contactar</a>
+          <ul class="closing__links glass" data-scroll="fade-up">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Email</a></li>
+            <li><a href="#">Portfolio</a></li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Imperio Caos Malware</p>
+  </footer>
+
+  <button class="page-nav page-nav--next" id="page-next" aria-label="Siguiente página">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <button class="page-nav page-nav--prev" id="page-prev" aria-label="Página anterior" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -2,6 +2,7 @@
   'use strict';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobileLayout = window.matchMedia('(max-width: 768px)').matches;
   const PAGE_DURATION = prefersReducedMotion ? 10 : 720;
 
   const pageLayers = document.getElementById('page-layers');
@@ -64,6 +65,21 @@
   function applyPageState(page) {
     const onPage2 = page === 2;
 
+    // En móvil todo es scroll vertical normal: no ocultamos secciones,
+    // no forzamos scroll al top, y ambas quedan siempre visibles/accesibles.
+    if (isMobileLayout) {
+      hero.setAttribute('aria-hidden', 'false');
+      closing.setAttribute('aria-hidden', 'false');
+      revealClosingContent();
+
+      navLinks.forEach((link) => {
+        const linkPage = Number(link.dataset.page);
+        link.classList.toggle('is-active', linkPage === page);
+        link.setAttribute('aria-current', linkPage === page ? 'page' : 'false');
+      });
+      return;
+    }
+
     document.body.classList.toggle('is-page-2', onPage2);
     pageLayers.classList.toggle('is-page-2', onPage2);
     hero.setAttribute('aria-hidden', onPage2 ? 'true' : 'false');
@@ -82,6 +98,15 @@
   }
 
   function goToPage(page) {
+    if (isMobileLayout) {
+      // En móvil los links del menú simplemente hacen scroll a la sección.
+      const target = page === 2 ? closing : hero;
+      target?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      currentPage = page;
+      applyPageState(page);
+      return;
+    }
+
     if (isTransitioning || (page !== 1 && page !== 2) || page === currentPage) return;
 
     isTransitioning = true;
@@ -104,7 +129,7 @@
     });
   });
 
-  if (!prefersReducedMotion) {
+  if (!prefersReducedMotion && !isMobileLayout) {
     let touchStartX = 0;
     let touchStartY = 0;
 
@@ -123,10 +148,12 @@
     }, { passive: true });
   }
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') goToPage(2);
-    if (e.key === 'ArrowLeft') goToPage(1);
-  });
+  if (!isMobileLayout) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goToPage(2);
+      if (e.key === 'ArrowLeft') goToPage(1);
+    });
+  }
 
   applyPageState(1);
 })();

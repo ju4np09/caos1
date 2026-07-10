@@ -482,6 +482,53 @@ body.is-page-2 .site-footer {
   .page-nav--next { right: var(--space-sm); }
   .page-nav--prev { left: var(--space-sm); }
   .page-bg { inset: -8%; }
+
+  /* --- Móvil: scroll vertical en vez de páginas horizontales --- */
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+  }
+
+  main {
+    height: auto;
+  }
+
+  .page-layers {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  .hero,
+  .closing {
+    position: relative;
+    inset: auto;
+    min-height: 100dvh;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .closing__content {
+    transform: none;
+    opacity: 1;
+  }
+
+  /* Ocultamos las flechas de navegación entre páginas: ya no aplica, es scroll */
+  .page-nav {
+    display: none;
+  }
+
+  /* El footer ya no depende de "estar en la página 2" */
+  .site-footer {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
